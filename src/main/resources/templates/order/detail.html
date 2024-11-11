@@ -1,0 +1,94 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+<head>
+    <style>
+        body {
+            background-color: #FCF8F3;
+        }
+
+        .card-header {
+            background-color: #DCA47C;
+            color: white;
+        }
+
+        .form-control-plaintext {
+            font-weight: bold;
+        }
+
+        .table th,
+        .table td {
+            vertical-align: middle;
+        }
+
+        .table thead th {
+            background-color: #FFD3B6;
+            color: #FCF8F3;
+        }
+    </style>
+</head>
+<body>
+    <main th:object="${order}">
+        <div class="container mt-5">
+	        <div class="card shadow">
+	            <div class="card-header">
+	                <h5 class="mb-0">ORDER INFORMATION</h5>
+	            </div>
+	            <div class="card-body">
+	                <div class="row mb-3">
+	                    <div class="col-md-4">
+	                        <label for="orderNumber" class="form-label">Order Number:</label>
+	                        <input th:field=*{id} type="text" class="form-control-plaintext" id="orderNumber" value="111206" readonly>
+	                    </div>
+	                    <div class="col-md-4">
+	                        <label for="orderer" class="form-label">Orderer</label>
+	                        <input th:field=*{account.fullname} type="text" class="form-control-plaintext" id="orderer" value="customer" readonly>
+	                    </div>
+	                    <div class="col-md-4">
+	                        <label for="orderdate" class="form-label">Order Date:</label>
+	                        <input th:field=*{createDate} type="text" class="form-control-plaintext" id="orderdate" value="2021-03-23"
+	                            readonly>
+	                    </div>
+	                </div>
+	                <div class="row">
+	                    <div class="col-md-12">
+	                        <label for="shippingAddress" class="form-label">Shipping Address:</label>
+	                        <textarea th:field=*{address} class="form-control-plaintext" id="shippingAddress" rows="2"
+	                            readonly>Address</textarea>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	
+	        <div class="card mt-4 shadow">
+	            <div class="card-header">
+	                <h5 class="mb-0">ORDER DETAILS</h5>
+	            </div>
+	            <div class="card-body p-0">
+	                <table class="table table-striped mb-0">
+	                    <thead>
+	                        <tr>
+	                            <th>Id</th>
+	                            <th>Name</th>
+	                            <th>Price</th>
+	                            <th>Quantity</th>
+	                            <th>Amount</th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                        <tr th:each="detail : *{orderDetails}" th:object="${detail}">
+	                            <td>[[*{product.id}]]</td>
+	                            <td>[[*{product.name}]]</td>
+	                            <td>$[[*{#numbers.formatDecimal(price,0,'COMMA',2,'POINT')}]]</td>
+	                            <td>[[*{quantity}]]</td>
+	                            <td>$[[*{#numbers.formatDecimal(price*quantity,0,'COMMA',2,'POINT')}]]</td>
+	                        </tr>
+	                    </tbody>
+	                </table>
+	            </div>
+	        </div>
+	    </div>
+
+    </main>
+</body>
+
+</html>

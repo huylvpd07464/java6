@@ -1,0 +1,67 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+
+<body>
+    <main class="d-flex justify-content-center">
+        <div class="p-md-3 w-100">
+            <div class="row justify-content-center mb-3" th:each="p : ${items}">
+                <div class="col-md-12 col-xl-10">
+                    <div class="card shadow-0 border rounded-3">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                                    <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                                        <img th:src="@{/assets/images/{image}(image=${p.image})}" class="w-100">
+                                        <a href="#!">
+                                            <div class="hover-overlay">
+                                                <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);">
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-xl-6">
+                                    <h5 th:text="${p.name}"></h5>
+                                    <div class="d-flex flex-row">
+                                        <span>---</span>
+                                    </div>
+                                    <div class="mt-1 mb-0 text-muted small">
+                                        <span>Light weight</span>
+                                        <span class="text-primary"> • </span>
+                                        <span>Best finish<br /></span>
+                                    </div>
+                                    <div class="mb-2 text-muted small">
+                                        <span>Unique design</span>
+                                        <span class="text-primary"> • </span>
+                                        <span>For men</span>
+                                        <span class="text-primary"> • </span>
+                                        <span>Casual<br /></span>
+                                    </div>
+                                    <p class="text-truncate mb-4 mb-md-0" th:text="${p.note}">
+                                        
+                                    </p>
+                                </div>
+                                <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+                                    <div class="d-flex flex-row align-items-center mb-1">
+                                        <h4 class="mb-1 me-1">$</h4>
+                                        <h4 class="mb-1 me-1" th:text="${p.price}"></h4>
+                                    </div>
+                                    <h6 class="text-success">Free shipping</h6>
+                                    <div class="d-flex flex-column mt-4">
+                                        <a th:href="@{|/product/detail/${p.id}|}" class="btn btn-primary btn-sm"
+                                            role="button">Details</a>
+                                        <a th:attr="ng-click=@{|cart.add(${p.id})|}"
+                                            class="btn btn-outline-primary btn-sm mt-2" role="button">Add to
+                                            cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

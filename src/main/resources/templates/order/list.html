@@ -1,0 +1,39 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+
+<body>
+    <main>
+        <div class="card mt-4 shadow">
+            <div class="card-header">
+                <h5 class="mb-0">ORDER LIST</h5>
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Order No.</th>
+                            <th>Order Date</th>
+                            <th>Address</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each = "order, state: ${orders}">
+                            <td>[[${state.index}]]</td>
+                            <td>[[${order.id}]]</td>
+                            <td>[[${order.createDate}]]</td>
+                            <td>[[${order.address}]]</td>
+                            <td>
+                            	<a th:href="@{|/order/detail/${order.id}|}" style="color: #cecece;"><i
+                                                            class="fas fa-search"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

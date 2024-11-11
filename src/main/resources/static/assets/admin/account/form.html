@@ -1,0 +1,33 @@
+<div class="container mt-4">
+    <form enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="username">User Name:</label>
+            <input ng-model="form.username" type="text" class="form-control" id="username" placeholder="User Name" />
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input ng-model="form.password" type="text" class="form-control" id="password" placeholder="Password" />
+        </div>
+        <div class="form-group">
+            <label for="fullname">Full Name:</label>
+            <input ng-model="form.fullname" type="text" class="form-control" id="fullname" placeholder="Full Name" />
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input ng-model="form.email" type="email" class="form-control" id="email" placeholder="Email" />
+        </div>
+        <div class="form-group">
+            <label for="photo">Photo:</label>
+            <input onchange="angular.element(this).scope().imageChanged(this.files)" type="file" class="form-control-file" id="photo" name="photo" />
+            <div>
+                <img ng-src="{{form.photo ? '/assets/images/' + form.photo : '/assets/images/cloud-upload.jpg'}}" alt="Account photo" class="img-thumbnail mt-2"
+                    width="150" height="150" />
+            </div>
+        </div>
+
+        <button ng-click="create()" type="submit" class="btn btn-success">Create</button>
+        <button ng-click="update()" type="submit" class="btn btn-primary">Update</button>
+        <button ng-click="delete(form)" type="submit" class="btn btn-danger">Delete</button>
+        <button ng-click="reset()" type="submit" class="btn btn-info">Reset</button>
+    </form>
+</div>
